@@ -1,4 +1,9 @@
-package com.siyuweather.app;
+package com.siyuweather.app.activity;
+
+import com.siyuweather.app.R;
+import com.siyuweather.app.R.id;
+import com.siyuweather.app.R.layout;
+import com.siyuweather.app.R.menu;
 
 import android.app.Activity;
 import android.os.Bundle;
