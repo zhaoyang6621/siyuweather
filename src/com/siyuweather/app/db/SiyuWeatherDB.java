@@ -14,6 +14,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class SiyuWeatherDB {
 
@@ -90,7 +91,8 @@ public class SiyuWeatherDB {
 			values.put("city_name", city.getCityName());
 			values.put("city_code", city.getCityCode());
 			values.put("province_id", city.getProvinceId());
-			db.insert("City", null, values);			
+			db.insert("City", null, values);	
+			//Log.d("执行到此：", "77777777777777");
 		}
 	}
 	
@@ -113,6 +115,7 @@ public class SiyuWeatherDB {
 		if(cursor != null){
 			cursor.close();
 		}
+		//Log.d("执行到此：", "8888888888");
 		return list;	
 	}
 	

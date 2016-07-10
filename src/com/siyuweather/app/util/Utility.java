@@ -1,6 +1,7 @@
 package com.siyuweather.app.util;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.siyuweather.app.db.SiyuWeatherDB;
 import com.siyuweather.app.model.City;
@@ -43,8 +44,10 @@ public class Utility {
 					city.setCityCode(array[0]);
 					city.setCityName(array[1]);
 					city.setId(provinceId);
+				//	Log.d("执行到此：", "3333333333333333");
 					//将解析出来的数据存储到City表
 					siyuWeatherDB.saveCity(city);
+				//	Log.d("执行到此：", "4444444444444444");
 				}
 				return true;
 			}

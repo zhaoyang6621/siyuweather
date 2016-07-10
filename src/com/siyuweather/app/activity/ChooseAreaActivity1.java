@@ -16,6 +16,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -122,15 +123,18 @@ public class ChooseAreaActivity1 extends Activity {
 	 * */
 	private void queryCities() {
 		cityList = siyuWeatherDB.loadCities(selectedProvince.getId());
+		Log.d("执9", "9999999999999");
 		if (cityList.size() > 0) {
 			dataList.clear();
 			for (City city : cityList) {
 				dataList.add(city.getCityName());
+				Log.d("执1111", "1212121212");
 			}
 			adapter.notifyDataSetChanged(); // 当我们需要ListView进行刷新的时候，我们需要调用Adapter.notifyDataSetChanged()来让界面刷新。notifyDataSetChanged()动态更新ListView,它可以在修改适配器绑定的数组后，不用重新刷新Activity，通知Activity更新ListView。
-			listView.setSelection(0);
+			listView.setSelection(0);//表示将列表移动到指定的Position处。
 			titleText.setText(selectedProvince.getProvinceName());
 			currentLevel = LEVEL_CITY;
+			Log.d("执10", "1010101010");
 		} else {
 			queryFromServer(selectedProvince.getProvinceCode(), "city");
 		}
@@ -161,9 +165,10 @@ public class ChooseAreaActivity1 extends Activity {
 	private void queryFromServer(final String code, final String type) {
 		String address;
 		if (!TextUtils.isEmpty(code)) {
-			address = "http://weather.con.cn/data/list3/city" + code + ".xml";
+			address = "http://weather.com.cn/data/list3/city" + code + ".xml";
+			Log.d("执行到此的address为：", address);
 		} else {
-			address = "http://weather.con.cn/data/list3/city.xml";
+			address = "http://weather.com.cn/data/list3/city.xml";
 		}
 		showProgressDialog();
 		HttpUtil.sendHttpRequest(address, new HttpCallbackListener() {
@@ -177,6 +182,7 @@ public class ChooseAreaActivity1 extends Activity {
 				} else if ("city".equals(type)) {
 					result = Utility.handleCitiesResponse(siyuWeatherDB,
 							response, selectedProvince.getId());
+					//Log.d("执行到此：", "22222222222");
 				} else if ("county".equals(type)) {
 					result = Utility.handleCountiesResponse(siyuWeatherDB,
 							response, selectedCity.getId());
@@ -191,7 +197,9 @@ public class ChooseAreaActivity1 extends Activity {
 							if ("province".equals(type)) {
 								queryProvinces();
 							} else if ("city".equals(type)) {
+								//Log.d("执行到此：", "5555555555");
 								queryCities();
+								//Log.d("执行到此：", "66666666666");
 							} else if ("county".equals(type)) {
 								queryCounties();
 							}
@@ -224,6 +232,7 @@ public class ChooseAreaActivity1 extends Activity {
 		if (progressDialog == null) {
 			progressDialog = new ProgressDialog(this);
 			progressDialog.setMessage("正在加载...");
+			//Log.d("执行到此", "11111");
 			progressDialog.setCanceledOnTouchOutside(false);
 		}
 		progressDialog.show();
