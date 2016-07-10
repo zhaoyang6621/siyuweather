@@ -123,18 +123,18 @@ public class ChooseAreaActivity1 extends Activity {
 	 * */
 	private void queryCities() {
 		cityList = siyuWeatherDB.loadCities(selectedProvince.getId());
-		Log.d("执9", "9999999999999");
+		//Log.d("执9", "9999999999999");
 		if (cityList.size() > 0) {
 			dataList.clear();
 			for (City city : cityList) {
 				dataList.add(city.getCityName());
-				Log.d("执1111", "1212121212");
+				//Log.d("执1111", "1212121212");
 			}
 			adapter.notifyDataSetChanged(); // 当我们需要ListView进行刷新的时候，我们需要调用Adapter.notifyDataSetChanged()来让界面刷新。notifyDataSetChanged()动态更新ListView,它可以在修改适配器绑定的数组后，不用重新刷新Activity，通知Activity更新ListView。
 			listView.setSelection(0);//表示将列表移动到指定的Position处。
 			titleText.setText(selectedProvince.getProvinceName());
 			currentLevel = LEVEL_CITY;
-			Log.d("执10", "1010101010");
+			//Log.d("执10", "1010101010");
 		} else {
 			queryFromServer(selectedProvince.getProvinceCode(), "city");
 		}

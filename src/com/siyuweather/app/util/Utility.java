@@ -43,7 +43,7 @@ public class Utility {
 					City city = new City();
 					city.setCityCode(array[0]);
 					city.setCityName(array[1]);
-					city.setId(provinceId);
+					city.setProvinceId(provinceId);
 				//	Log.d("执行到此：", "3333333333333333");
 					//将解析出来的数据存储到City表
 					siyuWeatherDB.saveCity(city);
@@ -67,7 +67,7 @@ public class Utility {
 					County county = new County();
 					county.setCountyCode(array[0]);
 					county.setCountyName(array[1]);
-					county.setId(cityId);
+					county.setCityId(cityId);
 					//将解析出来的数据存储到County表
 					siyuWeatherDB.saveCounty(county);
 				}
