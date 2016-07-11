@@ -100,6 +100,7 @@ public class Utility {
 			String temp2 = weatherInfo.getString("temp2");
 			String weatherDesp = weatherInfo.getString("weather");
 			String publishTime = weatherInfo.getString("ptime");
+			//将解析出的数据存储到本地SharedPreferences文件中
 			saveWeatherInfo(context,cityName,weatherCode,temp1,temp2,weatherDesp,publishTime);
 		}catch(JSONException e){
 			e.printStackTrace();
@@ -114,7 +115,7 @@ public class Utility {
 			String publishTime) {
 		SimpleDateFormat sdf = new SimpleDateFormat ("yyyy年M月d日",Locale.CHINA);
 		SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
-		editor.putBoolean("city_selected", true);
+		editor.putBoolean("city_selected", true);//标志位，辨别当前是否已选中一个城市
 		editor.putString("city_name", cityName);
 		editor.putString("weather_code", weatherCode);
 		editor.putString("temp1", temp1);
