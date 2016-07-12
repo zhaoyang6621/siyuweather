@@ -12,11 +12,12 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class WeatherActivity extends Activity {
+public class WeatherActivity extends Activity implements OnClickListener{
 
 	private LinearLayout weatherInfoLayout;
 	
@@ -70,10 +71,12 @@ public class WeatherActivity extends Activity {
 			publishText.setText("同步中。。。");
 			weatherInfoLayout.setVisibility(View.INVISIBLE);//设置不显示，但仍然占据可见时的大小和位置。
 			cityNameText.setVisibility(View.INVISIBLE);
+			Log.d("执行到此：", "444444444444");
 			queryWeatherCode(countyCode);
 		}else{
 			//没有县级代号时就直接显示本地存储的天气
 			showWeather();
+			Log.d("执行到此：", "13131323134");
 		}
 	}
 	
@@ -83,6 +86,7 @@ public class WeatherActivity extends Activity {
 	private void queryWeatherCode(String countyCode) {
 		String address = "http://www.weather.com.cn/data/list3/city" + countyCode + ".xml";
 		//Log.d("所要查询的县所对应的address为：", address);
+		Log.d("执行到此：", "55555555555");
 		queryFromServer(address,"countyCode");
 	}
 
@@ -108,12 +112,15 @@ public class WeatherActivity extends Activity {
 						String[] array = response.split("\\|");
 						if(array != null && array.length == 2){
 							String weatherCode = array[1];
+							Log.d("执行到此：", "6666666666666");
 							queryWeatherInfo(weatherCode);
 						}
 					}
 				} else if ("weatherCode".equals(type)) {
+					Log.d("执行到此：", "7777777");
 					//处理服务器返回的天气信息
 					Utility.handleWeatherResponse(WeatherActivity.this,response);
+					Log.d("执行到此：", "88888888");
 					// 通过runOnUiThread()方法回到主线程处理逻辑
 					runOnUiThread(new Runnable(){
 
@@ -156,6 +163,13 @@ public class WeatherActivity extends Activity {
 		currentDateText.setText(prefs.getString("current_date", ""));
 		weatherInfoLayout.setVisibility(View.INVISIBLE);
 		cityNameText.setVisibility(View.INVISIBLE);
+		Log.d("执行到此：", "15151515155");
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

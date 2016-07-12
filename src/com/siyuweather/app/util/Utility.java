@@ -100,8 +100,10 @@ public class Utility {
 			String temp2 = weatherInfo.getString("temp2");
 			String weatherDesp = weatherInfo.getString("weather");
 			String publishTime = weatherInfo.getString("ptime");
+			Log.d("执行到此：", "9999999999999");
 			//将解析出的数据存储到本地SharedPreferences文件中
 			saveWeatherInfo(context,cityName,weatherCode,temp1,temp2,weatherDesp,publishTime);
+			Log.d("执行到此：", "12121212121212");
 		}catch(JSONException e){
 			e.printStackTrace();
 		}
@@ -110,7 +112,7 @@ public class Utility {
 	/**
 	 * 将服务器返回的所有天气信息存储到SharedPreferences文件中
 	 * */	
-	private static void saveWeatherInfo(Context context, String cityName,
+	public static void saveWeatherInfo(Context context, String cityName,
 			String weatherCode, String temp1, String temp2, String weatherDesp,
 			String publishTime) {
 		SimpleDateFormat sdf = new SimpleDateFormat ("yyyy年M月d日",Locale.CHINA);
@@ -123,6 +125,7 @@ public class Utility {
 		editor.putString("weather_desp", weatherDesp);
 		editor.putString("publish_time", publishTime);
 		editor.putString("current_date", sdf.format(new Date()));// java.util.Date和java.sql.Date的区别和相互转化
+		Log.d("执行到此：", "10101010101");
 		editor.commit();
 	}
 }

@@ -81,8 +81,10 @@ public class ChooseAreaActivity1 extends Activity {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		if(prefs.getBoolean("city_selected", false)){
 			//System.out.print("布尔输出真假值为"+ prefs.getBoolean("city_selected", false));
+			Log.d("执行到此：", "000000000");
 			Intent intent = new Intent(this,WeatherActivity.class);
 			startActivity(intent);
+			Log.d("执行到此：", "1111111111");
 			finish();
 			return;
 		}
@@ -108,10 +110,12 @@ public class ChooseAreaActivity1 extends Activity {
 					selectedCity = cityList.get(index);
 					queryCounties();
 				} else if(currentLevel == LEVEL_COUNTY){
+					Log.d("执行到此：", "22222222222");
 					String countyCode = countyList.get(index).getCountyCode();
 					Intent intent = new Intent(ChooseAreaActivity1.this,WeatherActivity.class);
 					intent.putExtra("county_code", countyCode);
 					startActivity(intent);
+					Log.d("执行到此：", "3333333333333");
 					finish();
 				}
 			}
